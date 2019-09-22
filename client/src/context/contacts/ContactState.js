@@ -18,7 +18,7 @@ const ContactState = props => {
     contacts: [
       {
         id: 1,
-        name: "Paveen",
+        name: "Praveen",
         email: "pk@gmail.com",
         phone: "222-333-555-999",
         type: "professional"
@@ -95,7 +95,6 @@ const ContactState = props => {
   }
   //setNew PAge
   const setNewPage = contact => {
-    console.log("New Page", contact);
     dispatch({
       type: NEW_PAGE,
       payload: contact

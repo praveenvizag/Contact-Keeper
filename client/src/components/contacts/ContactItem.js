@@ -7,7 +7,6 @@ import { SET_CURRENT } from "../../context/types";
 const ContactItem = ({ contact }) => {
   const { id, name, email, phone, type } = contact;
   const contactContext = useContext(ContactContext);
-  console.log('contact context' , contactContext);
   const {deleteContact,setCurrent,clearCurrent,setNewPage} = contactContext;
 
   const onDelete = () => {

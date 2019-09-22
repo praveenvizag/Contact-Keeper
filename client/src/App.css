@@ -2,11 +2,12 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
+  --primary-color: #35c0dc;
   --dark-color: #333333;
-  --light-color: #f4f4f4;
+  --light-color:  #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --text-color:#dc3a35fa;
 }
 
 * {
@@ -71,7 +72,7 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 
 .text-dark {
@@ -258,7 +259,7 @@ img {
 .badge-light,
 .alert-light {
   background: var(--light-color);
-  color: #333;
+  color: rgb(51, 51, 51);
 }
 
 .btn-dark,
