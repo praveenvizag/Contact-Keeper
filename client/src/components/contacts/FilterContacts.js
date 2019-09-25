@@ -7,14 +7,12 @@ const FilterContacts = () => {
   const text = useRef("");
 
   useEffect(() => {
-    console.log("in ref");
     if (filtered === null) {
       text.current.value = "";
     }
   });
   const onChange = e => {
     if (text.current.value !== "") {
-      console.log("filtere text", e.target.value);
       filterContacts(e.target.value);
     } else {
       clearFilter();

@@ -3,13 +3,12 @@ import ContactContext from "./../../context/contacts/contactContext";
 import ContactForm from "./ContactForm";
 import { Link } from "react-router-dom";
 
-const NewpageForEdit = ({ match,props }) => {
+const NewpageForEdit = ({ match }) => {
   const contactContext = useContext(ContactContext);
   const { contacts, newPage } = contactContext;
   console.log("edit", match.params.edit);
-  console.log("props", props);
   console.log("new page data", newPage);
-  const data = contacts.filter(contact => contact.id == match.params.edit );
+  const data = contacts.filter(contact => contact.id === match.params.edit );
   console.log("filter data", data);
 
   if (newPage !== null) {

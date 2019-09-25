@@ -51,7 +51,7 @@ router.post('/',[
 })
 
 
-// @route  POST api/auth
+// @route  get api/auth
 // @desc Auth user adn login
 // @acess Privtae
 router.get('/', auth, async (req,res)=>{
