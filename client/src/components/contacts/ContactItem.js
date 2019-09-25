@@ -5,12 +5,12 @@ import ContactContext from './../../context/contacts/contactContext';
 import { SET_CURRENT } from "../../context/types";
 
 const ContactItem = ({ contact }) => {
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
   const contactContext = useContext(ContactContext);
   const {deleteContact,setCurrent,clearCurrent,setNewPage} = contactContext;
 
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
 
   };
@@ -41,7 +41,7 @@ const ContactItem = ({ contact }) => {
 
           <button className = "btn btn-dark btn-sm" onClick = {() => setCurrent(contact)}>Edit</button>
           <button className = "btn btn-danger btn-sm" onClick = {onDelete}>Delete</button>
-          <Link to  = {`newPage/${id}`} >New Page</Link>
+          <Link to  = {`newPage/${_id}`} >New Page</Link>
           <button className = "btn btn-dark btn-sm" onClick = {() => setNewPage(contact)}>New Page</button>
       </p>
     </div>

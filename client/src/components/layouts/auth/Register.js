@@ -22,7 +22,6 @@ const Register = (props) => {
       setAlert(error, "danger");
       clearError();
     } else if(error === null && isAuthenticated ) {
-      console.log('isAuthenticated',isAuthenticated);
       setAlert("Registration Success", "primary");
     }
     //eslint-disable-next-line
