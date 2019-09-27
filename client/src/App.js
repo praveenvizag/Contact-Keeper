@@ -13,6 +13,7 @@ import AuthState from "./context/auth/AuthState";
 import Alerts from "./components/layouts/Alerts";
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
+import RestComponent from './components/contacts/SpringBootRestCompoennets/RestComponent';
 
 if(localStorage.token) {
   setAuthToken(localStorage.token);
@@ -32,6 +33,7 @@ function App() {
                   <Route exact path="/about" component={About}></Route>
                   <Route exact path="/register" component={Register}></Route>
                   <Route exact path="/login" component={Login}></Route>
+                  <Route exact path="/getRestData" component={RestComponent}></Route>
                   <Route
                     exact
                     path="/newPage/:edit"

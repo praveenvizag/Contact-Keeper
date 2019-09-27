@@ -1,8 +1,7 @@
-import React, { useState, useContext ,useEffect} from "react";
-import ContactContext from './../../context/contacts/contactContext';
-import AlertContext from './../../context/alert/alertContext';
-
-
+import React, { useState, useContext, useEffect } from "react";
+import ContactContext from "./../../context/contacts/contactContext";
+import AlertContext from "./../../context/alert/alertContext";
+import {Link} from 'react-router-dom';
 const ContactForm = () => {
   const [contact, setContact] = useState({
     name: "",
@@ -12,12 +11,12 @@ const ContactForm = () => {
   });
   const contactContext = useContext(ContactContext);
   const alertContext = useContext(AlertContext);
-  const {addContact,current,clearCurrent,updateContact} = contactContext;
-  const {setAlert} = alertContext;
-  
-  useEffect (() => {
-    if(current !== null) {
-      setContact(current)
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
+  const { setAlert } = alertContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setContact(current);
     } else {
       setContact({
         name: "",
@@ -26,17 +25,17 @@ const ContactForm = () => {
         type: "personal"
       });
     }
-  },[current,contactContext]);
+  }, [current, contactContext]);
   const { email, phone, type, name } = contact;
   const onChange = e => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
   const onSubmit = e => {
     e.preventDefault();
-    if(name === "" || email === "" || phone === "") {
-      setAlert('Enter all Fields','danger');
+    if (name === "" || email === "" || phone === "") {
+      setAlert("Enter all Fields", "danger");
     } else {
-      if(current === null) {
+      if (current === null) {
         addContact(contact);
       } else {
         updateContact(contact);
@@ -48,16 +47,17 @@ const ContactForm = () => {
         type: "personal"
       });
       clearCurrent();
-    };
-
     }
-    
+  };
+
   const clearAll = () => {
     clearCurrent();
-  }
+  };
   return (
     <form onSubmit={onSubmit}>
-      <h2 className="text-primary">{current ? 'Edit Contact' : 'Add Contact'}</h2>
+      <h2 className="text-primary">
+        {current ? "Edit Contact" : "Add Contact"}
+      </h2>
       <input
         type="text"
         name="name"
@@ -99,16 +99,22 @@ const ContactForm = () => {
       <div>
         <input
           type="submit"
-          value={current ? 'Edit Contact' : 'Add Contact'}
+          value={current ? "Edit Contact" : "Add Contact"}
           className="btn btn-primary btn-block"
         />
       </div>
-      {current && <div>
-        <button className = "btn btn-light btn-block" onClick = {clearAll}>Clear</button>
-      </div>}
+      {current && (
+        <div>
+          <button className="btn btn-light btn-block" onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
+      <div className = "footer">
+        <Link to = '/getRestData'>Get Spring Boot Rest Data</Link>
+      </div>
     </form>
   );
 };
 
 export default ContactForm;
- 

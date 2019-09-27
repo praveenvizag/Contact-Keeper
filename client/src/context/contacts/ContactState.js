@@ -13,7 +13,9 @@ import {
   CLEAR_FILTER,
   NEW_PAGE,
   CONTACT_ERROR,
-  GET_CONTACTS
+  GET_CONTACTS,
+  CLEAR_CONTACTS,
+  REST_DATA
 } from "../types";
 import setAuthToken from './../../utils/setAuthToken';
 
@@ -23,7 +25,8 @@ const ContactState = props => {
     current: null,
     newPage: null,
     filtered: null,
-    error:null
+    error:null,
+    resData:[]
   };
   const [state, dispatch] = useReducer(ContactReducer, initialState);
   //Add Contact
@@ -71,15 +74,25 @@ const ContactState = props => {
 
   //Delete COntact
 
-  const deleteContact = id => {
+  const deleteContact = async id => {
     console.log('delete id' , id);
-    dispatch({
-      type: DELETE_CONTACT,
-      payload: id
-    });
+    try {
+      const res = await axios.delete(`/api/contacts/${id}`);
+      dispatch({
+        type: DELETE_CONTACT,
+        payload: id
+      });
+    } catch (error) {
+      
+    }
+    
   };
 
-  const clearContacts = () => {
+  //Clear contacts
+  const clearContatcs = () => {
+    dispatch({
+      type:CLEAR_CONTACTS
+    })
     
   }
   //Set Current Contact
@@ -123,6 +136,19 @@ const ContactState = props => {
       payload: contact
     });
   };
+
+  const getRestData = async () =>{
+    try {
+      const restRes = await axios.get("http://localhost:8081/getStudents");
+      console.log("rest data " , restRes.data);
+      dispatch({
+        type:REST_DATA,
+        payload:restRes.data
+      })
+    } catch (error) {
+      
+    }
+  }
   return (
     <ContactContext.Provider
       value={{
@@ -139,7 +165,10 @@ const ContactState = props => {
         setNewPage,
         filterContacts,
         clearFilter,
-        filtered: state.filtered
+        filtered: state.filtered,
+        resData:state.resData,
+        getRestData,
+        clearContatcs
       }}
     >
       {props.children}
