@@ -8,18 +8,20 @@ import {
   CLEAR_FILTER,
   GET_CONTACTS,
   NEW_PAGE,
-  CONTACT_ERROR
+  CONTACT_ERROR,
+  REST_DATA,
+  CLEAR_CONTACTS
 } from "../types";
 
 export default (state, action) => {
   console.log("action", action.type);
   console.log("reducrer payload", action.payload);
-  console.log("reducrer state", state.contacts);
   switch (action.type) {
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload]
+        contacts: [ action.payload,...state.contacts],
+        loading:false
       };
 
     case GET_CONTACTS:
@@ -49,8 +51,9 @@ export default (state, action) => {
       return {
         ...state,
         contacts: state.contacts.map(contact =>
-          contact.id === action.payload.id ? action.payload : contact
-        )
+          contact._id === action.payload._id ? action.payload : contact
+        ),
+        loading:false
       };
     case NEW_PAGE:
       return {
@@ -75,6 +78,20 @@ export default (state, action) => {
         ...state,
         error: action.payload
       };
+
+      case REST_DATA : 
+      return {
+        ...state,
+        resData:action.payload
+      };
+      case CLEAR_CONTACTS:
+        return {
+          ...state,
+          contacts:null,
+          filtered:null,
+          error:null,
+          current:null
+        }
     default:
       return state;
   }

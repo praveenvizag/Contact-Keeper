@@ -18,3 +18,5 @@ export const LOG_OUT='LOG_OUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const CONTACT_ERROR = 'CONTACT_ERROR';
 export const GET_CONTACTS = 'GET_CONTACTS';
+export const CLEAR_CONTACTS = 'GET_CONTACTS';
+export const REST_DATA = "REST_DATA";
